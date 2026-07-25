@@ -1,0 +1,140 @@
+ASTI WEBSITE - LOCAL RUN GUIDE
+================================
+
+1. REQUIREMENTS
+---------------
+- Node.js 20 or newer
+- npm 10 or newer
+- A modern browser (Chrome or Edge recommended for WebGPU effects)
+
+Check installed versions:
+  node --version
+  npm --version
+
+
+2. FIRST-TIME SETUP
+-------------------
+Open a terminal and run:
+
+  cd /home/sirin/User/Workspace/Aero-Web
+  npm install
+
+Create the local environment file:
+
+  cp .env.example .env
+
+Open .env and change these values before using the website outside local development:
+
+  JWT_SECRET=replace-this-with-a-long-random-value
+  ADMIN_USERNAME=admin
+  ADMIN_PASSWORD=choose-a-strong-password
+
+IMPORTANT:
+- Keep .env private. It is ignored by Git.
+- Change ADMIN_PASSWORD before any non-local deployment.
+- If .env is not present, local defaults are used. The default password is
+  "change-me-before-production" and must not be used in production.
+
+
+3. START THE WEBSITE
+--------------------
+From the project directory:
+
+  npm start
+
+Then open:
+
+  http://localhost:3000
+
+For automatic restart after server-file changes during development:
+
+  npm run dev
+
+Stop the running server:
+
+  Press Ctrl+C in the terminal that started it.
+
+
+4. PUBLIC WEBSITE
+-----------------
+Home page:
+
+  http://localhost:3000
+
+Main pages:
+
+  http://localhost:3000/about.html
+  http://localhost:3000/services.html
+  http://localhost:3000/research.html
+  http://localhost:3000/training.html
+  http://localhost:3000/projects.html
+  http://localhost:3000/certifications.html
+  http://localhost:3000/contact.html
+
+The home page has an animated WebGPU background. Browsers without WebGPU
+automatically use WebGL2 or the static CSS background.
+
+
+5. ADMIN DASHBOARD
+------------------
+Admin login:
+
+  http://localhost:3000/admin/login.html
+
+The dashboard is intentionally not linked from public navigation.
+
+Local default credentials (only when no .env file exists):
+
+  Username: admin
+  Password: change-me-before-production
+
+After successful login, the dashboard shows:
+
+- Total and unique visitor counts
+- Visits today, this week, and this month
+- Domestic (Vietnam) versus international visitors
+- International-country breakdown
+
+Log out using the "Dang xuat" button in the dashboard.
+
+
+6. VISITOR COUNTER NOTES
+------------------------
+- Visits are stored locally in db/asti.db.
+- Static assets, API requests, the admin pages, and known bots are not
+  counted as normal public-page visits.
+- Location is classified using the offline geoip-lite database:
+    VN = domestic
+    all other/unknown countries = international
+- Delete db/asti.db only if you intentionally want to reset visitor data and
+  recreate the local database.
+
+
+7. TROUBLESHOOTING
+------------------
+Port 3000 is already in use:
+  Set another port in .env, for example:
+
+  PORT=3001
+
+  Then restart npm start and open http://localhost:3001.
+
+CSS, layout, or effects look outdated:
+  Refresh with Ctrl+Shift+R (or Cmd+Shift+R on macOS).
+
+WebGPU effect is not visible:
+  Use a current version of Chrome or Edge. The site remains functional with
+  its WebGL2/CSS visual fallback.
+
+Cannot log in:
+  Confirm ADMIN_USERNAME and ADMIN_PASSWORD in .env, then restart the server.
+  Note: changing an existing admin password in .env does not update the
+  already-created local database user. For a local reset only, stop the
+  server, delete db/asti.db, and restart it.
+
+
+8. CHECKS
+---------
+Run the available project test command:
+
+  npm test

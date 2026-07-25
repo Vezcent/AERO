@@ -1,0 +1,742 @@
+/* ─── pages.css ─── shared styles for content pages ─── */
+
+/* ── Scroll-reveal ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(2.4rem);
+  transition: opacity .7s cubic-bezier(.22, 1, .36, 1), transform .7s cubic-bezier(.22, 1, .36, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Page hero overlay tint ── */
+.page-body {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+.page-body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(ellipse at 18% 78%, rgba(7, 24, 45, .82) 0%, transparent 50%),
+    radial-gradient(ellipse at 82% 12%, rgba(48, 18, 58, .45) 0%, transparent 45%),
+    var(--ink);
+  pointer-events: none;
+}
+
+/* ── Page section shared ── */
+.page-section {
+  padding: clamp(4rem, 8vw, 7rem) 0;
+  border-top: 1px solid var(--line);
+}
+.page-section:first-of-type {
+  border-top: 0;
+}
+.page-section-label {
+  margin-bottom: 1rem;
+  color: var(--cyan);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.page-section-heading {
+  max-width: 18ch;
+  font-size: clamp(2rem, 3.6vw, 3.8rem);
+  line-height: 1;
+  letter-spacing: -.04em;
+  font-weight: 500;
+  margin: 0 0 1.5rem;
+}
+.page-section-description {
+  max-width: 60ch;
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: .95rem;
+  margin-bottom: 2.5rem;
+}
+
+/* ── Two-column layout ── */
+.split-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(280px, .6fr);
+  gap: clamp(3rem, 8vw, 9rem);
+  align-items: start;
+}
+
+/* ── Director Profile Card ── */
+.director-card {
+  border: 1px solid var(--line);
+  background: linear-gradient(145deg, rgba(13, 26, 46, .95), rgba(7, 13, 22, .95));
+  padding: 2.2rem;
+  position: relative;
+  overflow: hidden;
+}
+.director-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--cyan), var(--blue), transparent);
+}
+.director-card .director-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue), var(--cyan));
+  display: grid;
+  place-items: center;
+  font-size: 1.8rem;
+  color: white;
+  margin-bottom: 1.2rem;
+}
+.director-card h3 {
+  margin: 0 0 .4rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+.director-card .director-title {
+  color: var(--cyan);
+  font-size: .82rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+.director-card p {
+  font-size: .88rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── Org Chart / Department List ── */
+.dept-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+.dept-card {
+  padding: 1.5rem;
+  border: 1px solid var(--line);
+  background: rgba(13, 26, 46, .45);
+  transition: background .25s, border-color .25s, transform .25s;
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+}
+.dept-card:hover {
+  background: linear-gradient(145deg, rgba(19, 65, 110, .35), rgba(9, 18, 30, .8));
+  border-color: rgba(53, 210, 255, .35);
+  transform: translateY(-4px);
+}
+.dept-card .dept-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: rgba(53, 210, 255, .1);
+  border: 1px solid rgba(53, 210, 255, .2);
+  display: grid;
+  place-items: center;
+  font-size: 1.1rem;
+}
+.dept-card h3 {
+  margin: .4rem 0 0;
+  font-size: 1rem;
+  font-weight: 550;
+}
+.dept-card p {
+  margin: 0;
+  font-size: .86rem;
+  line-height: 1.55;
+}
+
+/* ── Service icon cards ── */
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+}
+.service-card {
+  min-height: 280px;
+  padding: 1.8rem;
+  border: 1px solid var(--line);
+  background: linear-gradient(140deg, rgba(13, 26, 46, .9), rgba(7, 13, 22, .9));
+  display: flex;
+  flex-direction: column;
+  transition: border-color .25s, transform .25s, box-shadow .25s;
+}
+.service-card:hover {
+  border-color: rgba(53, 210, 255, .4);
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(0, 178, 255, .1);
+}
+.service-card .service-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: rgba(53, 210, 255, .08);
+  border: 1px solid rgba(53, 210, 255, .18);
+  display: grid;
+  place-items: center;
+  font-size: 1.4rem;
+  margin-bottom: 1.2rem;
+}
+.service-card .service-number {
+  color: var(--cyan);
+  font-size: .72rem;
+  letter-spacing: .1em;
+  margin-bottom: auto;
+}
+.service-card h3 {
+  margin: 1.2rem 0 .7rem;
+  font-size: 1.12rem;
+  font-weight: 550;
+}
+.service-card p {
+  margin: 0;
+  font-size: .88rem;
+  line-height: 1.6;
+}
+
+/* ── ISO/LAS Badge Highlight ── */
+.badge-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  margin-top: 2rem;
+}
+.badge-item {
+  padding: 2rem;
+  border: 1px solid var(--line);
+  background: linear-gradient(120deg, rgba(10, 42, 71, .5), rgba(6, 12, 23, .1) 60%);
+  text-align: center;
+  transition: border-color .25s;
+}
+.badge-item:hover {
+  border-color: rgba(53, 210, 255, .4);
+}
+.badge-item .badge-icon {
+  font-size: 2.8rem;
+  margin-bottom: .8rem;
+  display: block;
+}
+.badge-item h3 {
+  margin: 0 0 .3rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+.badge-item p {
+  margin: 0;
+  font-size: .85rem;
+  line-height: 1.5;
+}
+
+/* ── Filter bar ── */
+.filter-bar {
+  display: flex;
+  gap: .6rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+.filter-btn {
+  padding: .55rem 1.2rem;
+  background: rgba(13, 26, 46, .6);
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-size: .82rem;
+  cursor: pointer;
+  transition: color .2s, border-color .2s, background .2s;
+}
+.filter-btn:hover,
+.filter-btn.is-active {
+  color: var(--cyan);
+  border-color: var(--cyan);
+  background: rgba(53, 210, 255, .08);
+}
+
+/* ── Search bar ── */
+.search-bar {
+  display: flex;
+  gap: 0;
+  margin-bottom: 2rem;
+  max-width: 480px;
+}
+.search-bar input {
+  flex: 1;
+  padding: .75rem 1rem;
+  background: rgba(9, 17, 29, .9);
+  border: 1px solid var(--line);
+  border-right: 0;
+  color: var(--text);
+  font-size: .9rem;
+}
+.search-bar input::placeholder {
+  color: var(--muted);
+}
+.search-bar input:focus {
+  outline: none;
+  border-color: var(--cyan);
+}
+.search-bar button {
+  padding: .75rem 1.2rem;
+  background: rgba(53, 210, 255, .12);
+  border: 1px solid var(--line);
+  color: var(--cyan);
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background .2s;
+}
+.search-bar button:hover {
+  background: rgba(53, 210, 255, .22);
+}
+
+/* ── Article grid ── */
+.article-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.2rem;
+}
+.article-card {
+  padding: 1.6rem;
+  border: 1px solid var(--line);
+  background: linear-gradient(140deg, rgba(13, 26, 46, .85), rgba(7, 13, 22, .9));
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  transition: border-color .25s, transform .25s;
+}
+.article-card:hover {
+  border-color: rgba(53, 210, 255, .35);
+  transform: translateY(-4px);
+}
+.article-card .article-date {
+  color: var(--muted);
+  font-size: .76rem;
+  letter-spacing: .05em;
+  margin-bottom: .6rem;
+}
+.article-card h3 {
+  margin: 0 0 .7rem;
+  font-size: 1.08rem;
+  font-weight: 550;
+}
+.article-card p {
+  margin: 0;
+  font-size: .88rem;
+  line-height: 1.55;
+  flex: 1;
+}
+.article-card .article-link {
+  margin-top: 1rem;
+  color: var(--cyan);
+  font-size: .84rem;
+  font-weight: 600;
+}
+
+/* ── Pagination ── */
+.pagination {
+  display: flex;
+  gap: .5rem;
+  justify-content: center;
+  margin-top: 3rem;
+}
+.pagination button {
+  width: 38px;
+  height: 38px;
+  background: rgba(13, 26, 46, .6);
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-size: .85rem;
+  cursor: pointer;
+  transition: color .2s, border-color .2s;
+}
+.pagination button.is-active,
+.pagination button:hover {
+  color: var(--cyan);
+  border-color: var(--cyan);
+}
+
+/* ── Course catalogue ── */
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.2rem;
+}
+.course-card {
+  padding: 2rem;
+  border: 1px solid var(--line);
+  background: linear-gradient(145deg, rgba(13, 26, 46, .9), rgba(7, 13, 22, .9));
+  display: flex;
+  flex-direction: column;
+  transition: border-color .25s, transform .25s;
+}
+.course-card:hover {
+  border-color: rgba(53, 210, 255, .35);
+  transform: translateY(-4px);
+}
+.course-card .course-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  background: rgba(53, 210, 255, .08);
+  border: 1px solid rgba(53, 210, 255, .18);
+  display: grid;
+  place-items: center;
+  font-size: 1.5rem;
+  margin-bottom: 1.2rem;
+}
+.course-card h3 {
+  margin: 0 0 .5rem;
+  font-size: 1.12rem;
+  font-weight: 550;
+}
+.course-card p {
+  margin: 0;
+  font-size: .88rem;
+  line-height: 1.55;
+  flex: 1;
+}
+.course-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+}
+.course-card ul li {
+  padding: .35rem 0;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: .84rem;
+}
+.course-card ul li::before {
+  content: "→ ";
+  color: var(--cyan);
+}
+
+/* ── Contact form ── */
+.contact-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(2rem, 6vw, 5rem);
+}
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.contact-form label {
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+  color: var(--muted);
+  font-size: .84rem;
+  letter-spacing: .04em;
+}
+.contact-form input,
+.contact-form textarea {
+  padding: .85rem 1rem;
+  background: rgba(9, 17, 29, .9);
+  border: 1px solid var(--line);
+  color: var(--text);
+  font: inherit;
+  font-size: .92rem;
+  transition: border-color .2s;
+}
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--cyan);
+}
+.contact-form textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+.contact-form .submit-btn {
+  padding: .9rem 2rem;
+  border: 0;
+  background: linear-gradient(135deg, var(--cyan), var(--blue));
+  color: #001824;
+  font-weight: 700;
+  font-size: .92rem;
+  cursor: pointer;
+  transition: opacity .2s, transform .2s;
+  align-self: start;
+}
+.contact-form .submit-btn:hover {
+  opacity: .88;
+  transform: translateY(-2px);
+}
+.contact-info-list {
+  display: grid;
+  gap: 0;
+}
+.contact-info-item {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.contact-info-item:first-child {
+  padding-top: 0;
+}
+.contact-info-item .info-label {
+  color: var(--cyan);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: .4rem;
+}
+.contact-info-item h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 550;
+}
+.contact-info-item p {
+  margin: .3rem 0 0;
+  font-size: .86rem;
+}
+
+/* ── Map container ── */
+.map-container {
+  width: 100%;
+  height: 420px;
+  border: 1px solid var(--line);
+  background: rgba(9, 17, 29, .9);
+  margin-top: 2rem;
+}
+
+/* ── Project timeline ── */
+.timeline {
+  position: relative;
+  padding-left: 3rem;
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--line);
+}
+.timeline-item {
+  position: relative;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--line);
+  background: linear-gradient(140deg, rgba(13, 26, 46, .85), rgba(7, 13, 22, .9));
+  transition: border-color .25s, transform .25s;
+}
+.timeline-item:hover {
+  border-color: rgba(53, 210, 255, .35);
+  transform: translateX(4px);
+}
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -2.25rem;
+  top: 1.8rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--cyan);
+  border: 2px solid var(--ink);
+  box-shadow: 0 0 0 1px var(--cyan);
+}
+.timeline-item .timeline-label {
+  color: var(--cyan);
+  font-size: .74rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.timeline-item h3 {
+  margin: .5rem 0 .4rem;
+  font-size: 1.1rem;
+  font-weight: 550;
+}
+.timeline-item p {
+  margin: 0;
+  font-size: .88rem;
+  line-height: 1.55;
+}
+
+/* ── Certificate gallery ── */
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.2rem;
+}
+.cert-card {
+  padding: 2rem;
+  border: 1px solid var(--line);
+  background: linear-gradient(145deg, rgba(13, 26, 46, .9), rgba(7, 13, 22, .9));
+  position: relative;
+  overflow: hidden;
+  transition: border-color .25s, transform .25s;
+}
+.cert-card:hover {
+  border-color: rgba(53, 210, 255, .35);
+  transform: translateY(-4px);
+}
+.cert-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--cyan), var(--blue), transparent);
+}
+.cert-card .cert-icon {
+  font-size: 2.4rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+.cert-card h3 {
+  margin: 0 0 .5rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+.cert-card .cert-meta {
+  color: var(--cyan);
+  font-size: .78rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: .8rem;
+}
+.cert-card p {
+  margin: 0;
+  font-size: .88rem;
+  line-height: 1.6;
+}
+
+/* ── Lab locations ── */
+.location-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+.location-card {
+  padding: 1.4rem;
+  border: 1px solid var(--line);
+  background: rgba(13, 26, 46, .4);
+  transition: border-color .2s;
+}
+.location-card:hover {
+  border-color: rgba(53, 210, 255, .3);
+}
+.location-card .location-label {
+  color: var(--cyan);
+  font-size: .72rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: .5rem;
+}
+.location-card h3 {
+  margin: 0 0 .3rem;
+  font-size: .98rem;
+  font-weight: 550;
+}
+.location-card p {
+  margin: 0;
+  font-size: .84rem;
+  line-height: 1.5;
+}
+
+/* ── Stats row (about page) ── */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin: 2.5rem 0;
+}
+.stat-item {
+  padding: 1.5rem;
+  border: 1px solid var(--line);
+  background: rgba(13, 26, 46, .3);
+  text-align: center;
+}
+.stat-item .stat-value {
+  display: block;
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--cyan);
+  margin-bottom: .3rem;
+}
+.stat-item .stat-label {
+  color: var(--muted);
+  font-size: .8rem;
+  letter-spacing: .06em;
+}
+
+/* ── Quality slogan banner ── */
+.slogan-banner {
+  padding: clamp(3rem, 6vw, 5rem) 2rem;
+  border: 1px solid var(--line);
+  background: linear-gradient(115deg, rgba(10, 42, 71, .46), rgba(6, 12, 23, .08) 60%);
+  text-align: center;
+}
+.slogan-banner h2 {
+  font-size: clamp(1.8rem, 3.6vw, 3.5rem);
+  font-weight: 500;
+  margin: 0 0 1rem;
+  letter-spacing: -.03em;
+  line-height: 1.1;
+  max-width: none;
+}
+.slogan-banner p {
+  max-width: 60ch;
+  margin: 0 auto;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .split-layout {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .service-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .badge-panel {
+    grid-template-columns: 1fr;
+  }
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 650px) {
+  .service-grid,
+  .dept-grid,
+  .course-grid,
+  .cert-grid,
+  .location-grid,
+  .article-grid {
+    grid-template-columns: 1fr;
+  }
+  .timeline {
+    padding-left: 2.2rem;
+  }
+  .stats-row {
+    grid-template-columns: 1fr 1fr;
+  }
+  .map-container {
+    height: 300px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

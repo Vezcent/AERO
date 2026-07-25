@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "name": "Thủy điện Đồng Nai 4",
+    "location": "Bảo Lộc, Lâm Đồng",
+    "domain": "hydro",
+    "lat": 11.6,
+    "lng": 107.78,
+    "description": "Thí nghiệm kiểm tra chất lượng vật liệu và công trình thủy điện quy mô lớn tại huyện Cát Tiên."
+  },
+  {
+    "id": 2,
+    "name": "Sân đỗ máy bay A321 — Sân bay Đà Nẵng",
+    "location": "Đà Nẵng",
+    "domain": "aviation",
+    "lat": 16.0544,
+    "lng": 108.2022,
+    "description": "Đánh giá sức chịu tải cho khai thác máy bay Airbus A321 tại các vị trí sân đỗ A41 và 917."
+  },
+  {
+    "id": 3,
+    "name": "Đường tuần tra biên giới — Gia Lai",
+    "location": "Gia Lai",
+    "domain": "roads",
+    "lat": 13.98,
+    "lng": 108.0,
+    "description": "Thí nghiệm kiểm định chỉ tiêu cơ lý bê tông xi măng cho hệ thống đường tuần tra biên giới."
+  },
+  {
+    "id": 4,
+    "name": "Đường tuần tra biên giới — Đồng Tháp",
+    "location": "Đồng Tháp",
+    "domain": "roads",
+    "lat": 10.65,
+    "lng": 105.62,
+    "description": "Kiểm tra chất lượng bê tông xi măng tuyến đường tuần tra biên giới phía Nam."
+  },
+  {
+    "id": 5,
+    "name": "Đường tuần tra biên giới — Long An",
+    "location": "Mộc Hóa, Long An",
+    "domain": "roads",
+    "lat": 10.77,
+    "lng": 105.94,
+    "description": "Phòng thí nghiệm ASTI triển khai đội ngũ thí nghiệm hiện trường tại huyện Mộc Hóa."
+  },
+  {
+    "id": 6,
+    "name": "Ký túc xá ĐHQG TP.HCM",
+    "location": "TP. Hồ Chí Minh",
+    "domain": "buildings",
+    "lat": 10.878,
+    "lng": 106.804,
+    "description": "Kiểm định kết cấu chịu lực cho tổ hợp ký túc xá sinh viên Đại học Quốc gia TP.HCM."
+  },
+  {
+    "id": 7,
+    "name": "KCN Quốc phòng Long Bình",
+    "location": "Biên Hòa, Đồng Nai",
+    "domain": "roads",
+    "lat": 10.94,
+    "lng": 106.84,
+    "description": "Thí nghiệm đất nền và bê tông cho hệ thống đường nội bộ khu công nghiệp quốc phòng."
+  },
+  {
+    "id": 8,
+    "name": "Sân bay Phú Quốc — Kiểm định mặt đường",
+    "location": "Dương Đông, Phú Quốc",
+    "domain": "aviation",
+    "lat": 10.17,
+    "lng": 103.99,
+    "description": "Kiểm tra độ phẳng, sức chịu tải và chất lượng bê tông nhựa mặt đường cất hạ cánh."
+  }
+]

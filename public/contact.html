@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Liên hệ Viện Khoa học và Công nghệ Hàng không — địa chỉ, điện thoại, email và bản đồ.">
+  <title>ASTI | Liên hệ</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <script defer src="js/page-transitions.js"></script>
+  <script defer src="js/i18n.js"></script>
+</head>
+<body class="page-body">
+  <main class="site-shell">
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Trang chủ ASTI">
+        <img src="assets/logo.png" alt="Logo ASTI">
+        <span class="brand__name">VIỆN KHOA HỌC VÀ<br>CÔNG NGHỆ HÀNG KHÔNG<small>AVIATION SCIENCE &amp; TECHNOLOGY INSTITUTE</small></span>
+      </a>
+      <button class="nav-toggle" type="button" aria-controls="main-nav" aria-expanded="false">MENU</button>
+      <nav id="main-nav" class="nav">
+        <a href="research.html">Tin tức &amp; Khám phá</a>
+        <a href="services.html">Lĩnh vực</a>
+        <a href="services.html">Dịch vụ</a>
+        <a href="training.html">Đào tạo</a>
+        <a href="about.html">Về chúng tôi</a>
+      </nav>
+      <button class="lang-toggle" type="button" aria-label="Switch to English">EN</button>
+    </header>
+
+    <!-- Hero -->
+    <section class="page-hero reveal">
+      <div class="eyebrow">Liên hệ</div>
+      <h1>Bắt đầu cuộc trao đổi cùng ASTI.</h1>
+      <p>Chúng tôi sẵn sàng kết nối về nghiên cứu, thí nghiệm kiểm định, tư vấn và đào tạo chuyên môn.</p>
+    </section>
+
+    <!-- Contact Form + Info -->
+    <section class="page-section reveal" aria-labelledby="contact-title">
+      <div class="page-section-label">Gửi yêu cầu</div>
+      <h2 id="contact-title" class="page-section-heading">Liên hệ trực tiếp.</h2>
+
+      <div class="contact-layout">
+        <form class="contact-form" id="contact-form" onsubmit="event.preventDefault(); this.querySelector('.submit-btn').textContent = 'Đã gửi ✓'; this.querySelector('.submit-btn').disabled = true;">
+          <label>Họ và tên <input type="text" name="name" required placeholder="Nguyễn Văn A"></label>
+          <label>Tổ chức / Công ty <input type="text" name="org" placeholder="Tên tổ chức"></label>
+          <label>Email <input type="email" name="email" required placeholder="email@example.com"></label>
+          <label>Nội dung
+            <textarea name="message" rows="5" required placeholder="Mô tả yêu cầu hoặc nội dung cần trao đổi…"></textarea>
+          </label>
+          <button type="submit" class="submit-btn">Gửi liên hệ</button>
+        </form>
+
+        <div class="contact-info-list">
+          <div class="contact-info-item">
+            <div class="info-label">Địa chỉ trụ sở</div>
+            <h3>156/12 Cộng Hòa</h3>
+            <p>Phường Bảy Hiền, Quận Tân Bình, Thành phố Hồ Chí Minh.</p>
+          </div>
+          <div class="contact-info-item">
+            <div class="info-label">Điện thoại</div>
+            <h3>028.38426046</h3>
+            <p>Giờ làm việc: Thứ Hai – Thứ Sáu, 08:00 – 17:00.</p>
+          </div>
+          <div class="contact-info-item">
+            <div class="info-label">Email</div>
+            <h3>vienhangkhong2008@gmail.com</h3>
+            <p>Phản hồi trong vòng 24 giờ làm việc.</p>
+          </div>
+          <div class="contact-info-item">
+            <div class="info-label">Website</div>
+            <h3>vienhangkhong.com</h3>
+            <p>Thông tin chính thức về Viện Khoa học và Công nghệ Hàng không.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Map -->
+    <section class="page-section reveal" aria-labelledby="map-title">
+      <div class="page-section-label">Bản đồ</div>
+      <h2 id="map-title" class="page-section-heading">Vị trí trụ sở.</h2>
+      <div id="contact-map" class="map-container"></div>
+    </section>
+
+    <!-- All Lab Locations -->
+    <section class="page-section reveal" aria-labelledby="labs-title">
+      <div class="page-section-label">Các cơ sở</div>
+      <h2 id="labs-title" class="page-section-heading">Mạng lưới thí nghiệm.</h2>
+      <p class="page-section-description">ASTI duy trì hoạt động tại trụ sở chính và các phòng thí nghiệm hiện trường trên khắp miền Nam Việt Nam.</p>
+
+      <div class="location-grid">
+        <div class="location-card">
+          <div class="location-label">Trụ sở chính</div>
+          <h3>TP. Hồ Chí Minh</h3>
+          <p>156/12 Cộng Hòa, Phường Bảy Hiền, Quận Tân Bình</p>
+        </div>
+        <div class="location-card">
+          <div class="location-label">Hiện trường 02</div>
+          <h3>Phú Quốc, Kiên Giang</h3>
+          <p>Dương Đông, Phú Quốc</p>
+        </div>
+        <div class="location-card">
+          <div class="location-label">Hiện trường 03</div>
+          <h3>Mộc Hóa, Long An</h3>
+          <p>Dự án đường tuần tra biên giới</p>
+        </div>
+        <div class="location-card">
+          <div class="location-label">Hiện trường 04</div>
+          <h3>Biên Hòa, Đồng Nai</h3>
+          <p>KCN Quốc phòng Long Bình</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <span>Viện Khoa học và Công nghệ Hàng không</span>
+      <a href="index.html">Trở về trang chủ →</a>
+    </footer>
+  </main>
+  <button class="scroll-top" aria-label="Cuộn lên đầu trang">↑</button>
+  <script src="js/main.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    /* Contact page map — ASTI headquarters */
+    const map = L.map("contact-map", { scrollWheelZoom: false }).setView([10.7991, 106.6422], 16);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      maxZoom: 19
+    }).addTo(map);
+    L.marker([10.7991, 106.6422]).addTo(map)
+      .bindPopup("<strong>ASTI</strong><br>156/12 Cộng Hòa<br>Q. Tân Bình, TP. HCM")
+      .openPopup();
+  </script>
+</body>
+</html>

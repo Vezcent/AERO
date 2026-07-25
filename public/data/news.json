@@ -1,0 +1,98 @@
+[
+  {
+    "id": 1,
+    "title": "Nghiên cứu vật liệu composite mới cho kết cấu công trình hàng không",
+    "summary": "Ứng dụng vật liệu composite cốt sợi cacbon trong gia cường kết cấu bê tông cốt thép, mở ra hướng đi mới cho công trình hạ tầng sân bay.",
+    "category": "research",
+    "date": "2026-06-15",
+    "tag": "Nghiên cứu"
+  },
+  {
+    "id": 2,
+    "title": "Kiểm định sức chịu tải sân đỗ máy bay A321 — Cảng hàng không Đà Nẵng",
+    "summary": "Hoàn thành đánh giá sức chịu tải sân đỗ phục vụ khai thác máy bay Airbus A321 tại vị trí A41 và 917, sân bay quốc tế Đà Nẵng.",
+    "category": "projects",
+    "date": "2026-05-22",
+    "tag": "Dự án"
+  },
+  {
+    "id": 3,
+    "title": "Khóa bồi dưỡng nghiệp vụ thí nghiệm viên xây dựng 2026",
+    "summary": "Trung tâm đào tạo ASTI tổ chức chương trình bồi dưỡng nghiệp vụ thí nghiệm chuyên ngành xây dựng theo quy chuẩn hiện hành.",
+    "category": "training",
+    "date": "2026-05-10",
+    "tag": "Đào tạo"
+  },
+  {
+    "id": 4,
+    "title": "Hội thảo ứng dụng công nghệ mới trong giám sát thi công đường bộ",
+    "summary": "ASTI phối hợp tổ chức hội thảo chuyên đề về phương pháp giám sát hiện đại cho công trình đường bê tông xi măng.",
+    "category": "events",
+    "date": "2026-04-28",
+    "tag": "Sự kiện"
+  },
+  {
+    "id": 5,
+    "title": "Thí nghiệm cơ lý đất nền công trình KCN Quốc phòng Long Bình",
+    "summary": "Phòng thí nghiệm LAS-XD 216 thực hiện chương trình thí nghiệm cơ lý đất phục vụ dự án đường nội bộ khu công nghiệp.",
+    "category": "projects",
+    "date": "2026-04-12",
+    "tag": "Dự án"
+  },
+  {
+    "id": 6,
+    "title": "Phát triển phương pháp kiểm tra nhanh cường độ bê tông tại hiện trường",
+    "summary": "Nghiên cứu kết hợp phương pháp không phá hủy (NDT) và phương pháp bán phá hủy để đánh giá chất lượng bê tông nhanh hơn.",
+    "category": "research",
+    "date": "2026-03-20",
+    "tag": "Nghiên cứu"
+  },
+  {
+    "id": 7,
+    "title": "Chương trình đào tạo nghiệp vụ hàng không cho cơ quan quản lý",
+    "summary": "Khóa đào tạo ngắn hạn về nghiệp vụ quản lý bay, an toàn hàng không và tiêu chuẩn ICAO cho cán bộ quản lý.",
+    "category": "training",
+    "date": "2026-03-05",
+    "tag": "Đào tạo"
+  },
+  {
+    "id": 8,
+    "title": "Giám sát chất lượng bê tông đường tuần tra biên giới Gia Lai",
+    "summary": "Phối hợp kiểm định chỉ tiêu cơ lý vật liệu bê tông xi măng cho hệ thống đường tuần tra biên giới tại tỉnh Gia Lai.",
+    "category": "projects",
+    "date": "2026-02-18",
+    "tag": "Dự án"
+  },
+  {
+    "id": 9,
+    "title": "Nghiên cứu ứng dụng cầu thép lắp ghép cho vùng khó tiếp cận",
+    "summary": "Đề tài nghiên cứu thiết kế cầu thép dạng modular có thể lắp ghép nhanh tại các vùng biên giới và vùng sâu vùng xa.",
+    "category": "research",
+    "date": "2026-01-30",
+    "tag": "Nghiên cứu"
+  },
+  {
+    "id": 10,
+    "title": "Hội nghị tổng kết hoạt động khoa học công nghệ năm 2025",
+    "summary": "Viện ASTI tổ chức hội nghị tổng kết năm với sự tham dự của các đối tác chiến lược và cơ quan quản lý nhà nước.",
+    "category": "events",
+    "date": "2026-01-10",
+    "tag": "Sự kiện"
+  },
+  {
+    "id": 11,
+    "title": "Nâng cao năng lực thí nghiệm với thiết bị nén mẫu tự động mới",
+    "summary": "Phòng thí nghiệm LAS-XD 216 được trang bị máy nén mẫu bê tông tự động, nâng cao năng lực và tốc độ phục vụ.",
+    "category": "events",
+    "date": "2025-12-15",
+    "tag": "Sự kiện"
+  },
+  {
+    "id": 12,
+    "title": "Đánh giá an toàn kết cấu ký túc xá ĐHQG TP.HCM",
+    "summary": "Thực hiện chương trình kiểm định định kỳ kết cấu chịu lực cho tổ hợp ký túc xá sinh viên quy mô lớn.",
+    "category": "projects",
+    "date": "2025-11-28",
+    "tag": "Dự án"
+  }
+]

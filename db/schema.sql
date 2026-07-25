@@ -1,0 +1,17 @@
+CREATE TABLE IF NOT EXISTS visits (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  session_id TEXT NOT NULL,
+  country TEXT NOT NULL DEFAULT 'UN',
+  is_domestic INTEGER NOT NULL DEFAULT 0 CHECK (is_domestic IN (0, 1)),
+  visited_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX IF NOT EXISTS idx_visits_date ON visits(visited_at);
+CREATE INDEX IF NOT EXISTS idx_visits_country ON visits(country);
+
+CREATE TABLE IF NOT EXISTS admin_users (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  username TEXT NOT NULL UNIQUE,
+  pw_hash TEXT NOT NULL,
+  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);

@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tin tức, nghiên cứu khoa học và hoạt động chuyển giao công nghệ của Viện ASTI.">
+  <title>ASTI | Tin tức &amp; Khám phá</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <script defer src="js/page-transitions.js"></script>
+  <script defer src="js/i18n.js"></script>
+</head>
+<body class="page-body">
+  <main class="site-shell">
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Trang chủ ASTI">
+        <img src="assets/logo.png" alt="Logo ASTI">
+        <span class="brand__name">VIỆN KHOA HỌC VÀ<br>CÔNG NGHỆ HÀNG KHÔNG<small>AVIATION SCIENCE &amp; TECHNOLOGY INSTITUTE</small></span>
+      </a>
+      <button class="nav-toggle" type="button" aria-controls="main-nav" aria-expanded="false">MENU</button>
+      <nav id="main-nav" class="nav">
+        <a href="research.html" aria-current="page">Tin tức &amp; Khám phá</a>
+        <a href="services.html">Lĩnh vực</a>
+        <a href="services.html">Dịch vụ</a>
+        <a href="training.html">Đào tạo</a>
+        <a href="about.html">Về chúng tôi</a>
+      </nav>
+      <button class="lang-toggle" type="button" aria-label="Switch to English">EN</button>
+    </header>
+
+    <!-- Hero -->
+    <section class="page-hero reveal">
+      <div class="eyebrow">Tin tức &amp; khám phá</div>
+      <h1>Tư duy khoa học cho những kết nối bền vững.</h1>
+      <p>Cập nhật các lĩnh vực nghiên cứu, hoạt động chuyển giao công nghệ, kiểm định và đào tạo của Viện Khoa học và Công nghệ Hàng không.</p>
+    </section>
+
+    <!-- Search & Filters -->
+    <section class="page-section reveal" aria-label="Tìm kiếm và lọc bài viết">
+      <div class="search-bar">
+        <input type="search" id="article-search" placeholder="Tìm kiếm bài viết…" aria-label="Tìm kiếm bài viết">
+        <button type="button" aria-label="Tìm kiếm">⌕</button>
+      </div>
+      <div class="filter-bar" id="filter-bar">
+        <button class="filter-btn is-active" data-filter="all">Tất cả</button>
+        <button class="filter-btn" data-filter="research">Nghiên cứu</button>
+        <button class="filter-btn" data-filter="projects">Dự án</button>
+        <button class="filter-btn" data-filter="training">Đào tạo</button>
+        <button class="filter-btn" data-filter="events">Sự kiện</button>
+      </div>
+
+      <!-- Article Grid -->
+      <div class="article-grid" id="article-grid">
+        <!-- Populated by JS -->
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination" id="pagination"></div>
+    </section>
+
+    <footer class="site-footer">
+      <span>Viện Khoa học và Công nghệ Hàng không</span>
+      <a href="contact.html">Liên hệ →</a>
+    </footer>
+  </main>
+  <button class="scroll-top" aria-label="Cuộn lên đầu trang">↑</button>
+  <script src="js/main.js"></script>
+  <script>
+    /* ── Research page: load news.json, filter, search, paginate ── */
+    const ITEMS_PER_PAGE = 6;
+    let allArticles = [];
+    let currentFilter = "all";
+    let currentSearch = "";
+    let currentPage = 1;
+
+    async function loadArticles() {
+      try {
+        const response = await fetch("data/news.json");
+        allArticles = await response.json();
+        renderArticles();
+      } catch (e) {
+        document.getElementById("article-grid").innerHTML =
+          '<p style="color: var(--muted);">Không thể tải dữ liệu bài viết.</p>';
+      }
+    }
+
+    function filteredArticles() {
+      return allArticles.filter((a) => {
+        const matchFilter = currentFilter === "all" || a.category === currentFilter;
+        const matchSearch = !currentSearch || a.title.toLowerCase().includes(currentSearch) || a.summary.toLowerCase().includes(currentSearch);
+        return matchFilter && matchSearch;
+      });
+    }
+
+    function renderArticles() {
+      const filtered = filteredArticles();
+      const totalPages = Math.max(1, Math.ceil(filtered.length / ITEMS_PER_PAGE));
+      currentPage = Math.min(currentPage, totalPages);
+      const start = (currentPage - 1) * ITEMS_PER_PAGE;
+      const page = filtered.slice(start, start + ITEMS_PER_PAGE);
+
+      const grid = document.getElementById("article-grid");
+      grid.innerHTML = page.length
+        ? page.map((a) => `
+          <article class="article-card">
+            <span class="tag">${a.tag}</span>
+            <div class="article-date">${new Date(a.date).toLocaleDateString("vi-VN", { year: "numeric", month: "long", day: "numeric" })}</div>
+            <h3>${a.title}</h3>
+            <p>${a.summary}</p>
+            <span class="article-link">Đọc thêm →</span>
+          </article>
+        `).join("")
+        : '<p style="color: var(--muted); grid-column: 1 / -1;">Không tìm thấy bài viết phù hợp.</p>';
+
+      const pagination = document.getElementById("pagination");
+      if (totalPages > 1) {
+        pagination.innerHTML = Array.from({ length: totalPages }, (_, i) =>
+          `<button class="${i + 1 === currentPage ? "is-active" : ""}" data-page="${i + 1}">${i + 1}</button>`
+        ).join("");
+      } else {
+        pagination.innerHTML = "";
+      }
+    }
+
+    /* Filter buttons */
+    document.getElementById("filter-bar").addEventListener("click", (e) => {
+      const btn = e.target.closest(".filter-btn");
+      if (!btn) return;
+      document.querySelectorAll(".filter-btn").forEach((b) => b.classList.remove("is-active"));
+      btn.classList.add("is-active");
+      currentFilter = btn.dataset.filter;
+      currentPage = 1;
+      renderArticles();
+    });
+
+    /* Search */
+    document.getElementById("article-search").addEventListener("input", (e) => {
+      currentSearch = e.target.value.toLowerCase().trim();
+      currentPage = 1;
+      renderArticles();
+    });
+
+    /* Pagination */
+    document.getElementById("pagination").addEventListener("click", (e) => {
+      const btn = e.target.closest("button[data-page]");
+      if (!btn) return;
+      currentPage = Number(btn.dataset.page);
+      renderArticles();
+      document.getElementById("article-grid").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    loadArticles();
+  </script>
+</body>
+</html>

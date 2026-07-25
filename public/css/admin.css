@@ -1,0 +1,20 @@
+.admin-body { background: radial-gradient(circle at 85% 10%, #173555, var(--ink) 45%); min-height: 100vh; }
+.admin-layout { width: min(calc(100% - 2rem), 1160px); margin: 0 auto; padding: 3rem 0; }
+.admin-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--line); padding-bottom: 1.5rem; }
+.metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin: 2rem 0; }
+.metric { padding: 1.3rem; background: rgba(17, 28, 42, .92); border: 1px solid var(--line); }
+.metric span { display: block; color: var(--muted); font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; }
+.metric strong { display: block; font-size: 2rem; margin-top: .5rem; }
+.admin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.admin-panel { padding: 1.5rem; background: rgba(17, 28, 42, .92); border: 1px solid var(--line); }
+.admin-panel h2 { font-size: 1.2rem; }
+.bar { display: grid; grid-template-columns: 100px 1fr 50px; align-items: center; gap: .75rem; margin: 1rem 0; font-size: .85rem; }
+.bar__track { height: 10px; background: #09111d; }
+.bar__fill { height: 100%; background: linear-gradient(90deg, var(--blue), var(--cyan)); transition: width .4s; }
+.login-card { width: min(calc(100% - 2rem), 420px); margin: 12vh auto; padding: 2rem; background: rgba(17, 28, 42, .96); border: 1px solid var(--line); }
+.login-card label { display: grid; gap: .45rem; margin: 1rem 0; color: var(--muted); font-size: .85rem; }
+.login-card input { padding: .8rem; color: var(--text); background: #09111d; border: 1px solid var(--line); }
+.login-card button { width: 100%; padding: .85rem; border: 0; color: #00101a; background: var(--cyan); font-weight: 700; cursor: pointer; }
+.notice { min-height: 1.4rem; margin: 1rem 0 0; color: #ff99a0; font-size: .85rem; }
+table { width: 100%; border-collapse: collapse; font-size: .88rem; } th, td { text-align: left; padding: .65rem 0; border-bottom: 1px solid var(--line); } th { color: var(--muted); font-weight: 500; }
+@media (max-width: 720px) { .metrics { grid-template-columns: 1fr 1fr; } .admin-grid { grid-template-columns: 1fr; } }

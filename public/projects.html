@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Các dự án tiêu biểu của ASTI — thủy điện, sân bay, đường bộ, đô thị trên khắp Việt Nam.">
+  <title>ASTI | Dự án</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <script defer src="js/page-transitions.js"></script>
+  <script defer src="js/i18n.js"></script>
+</head>
+<body class="page-body">
+  <main class="site-shell">
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Trang chủ ASTI">
+        <img src="assets/logo.png" alt="Logo ASTI">
+        <span class="brand__name">VIỆN KHOA HỌC VÀ<br>CÔNG NGHỆ HÀNG KHÔNG<small>AVIATION SCIENCE &amp; TECHNOLOGY INSTITUTE</small></span>
+      </a>
+      <button class="nav-toggle" type="button" aria-controls="main-nav" aria-expanded="false">MENU</button>
+      <nav id="main-nav" class="nav">
+        <a href="research.html">Tin tức &amp; Khám phá</a>
+        <a href="services.html">Lĩnh vực</a>
+        <a href="services.html">Dịch vụ</a>
+        <a href="training.html">Đào tạo</a>
+        <a href="about.html">Về chúng tôi</a>
+      </nav>
+      <button class="lang-toggle" type="button" aria-label="Switch to English">EN</button>
+    </header>
+
+    <!-- Hero -->
+    <section class="page-hero reveal">
+      <div class="eyebrow">Năng lực &amp; kinh nghiệm</div>
+      <h1>Các công trình được kiểm chứng trong thực tế.</h1>
+      <p>Kinh nghiệm thí nghiệm và kiểm định của ASTI trải dài từ hạ tầng hàng không đến công trình thủy điện, đường bộ và đô thị trên khắp Việt Nam.</p>
+    </section>
+
+    <!-- Domain Filters -->
+    <section class="page-section reveal" aria-label="Bộ lọc dự án">
+      <div class="filter-bar" id="domain-filter">
+        <button class="filter-btn is-active" data-domain="all">Tất cả</button>
+        <button class="filter-btn" data-domain="aviation">✈️ Hàng không</button>
+        <button class="filter-btn" data-domain="hydro">💧 Thủy điện</button>
+        <button class="filter-btn" data-domain="roads">🛤️ Đường bộ</button>
+        <button class="filter-btn" data-domain="buildings">🏢 Đô thị</button>
+      </div>
+    </section>
+
+    <!-- Map -->
+    <section class="page-section reveal" aria-labelledby="map-title">
+      <div class="page-section-label">Bản đồ dự án</div>
+      <h2 id="map-title" class="page-section-heading">Phạm vi hoạt động.</h2>
+      <div id="project-map" class="map-container" style="border-radius: 0;"></div>
+    </section>
+
+    <!-- Project Timeline -->
+    <section class="page-section reveal" aria-labelledby="timeline-title">
+      <div class="page-section-label">Dự án tiêu biểu</div>
+      <h2 id="timeline-title" class="page-section-heading">Dòng thời gian.</h2>
+      <p class="page-section-description">Các dự án mà ASTI đã tham gia thí nghiệm, kiểm định và giám sát chất lượng.</p>
+
+      <div class="timeline" id="project-timeline">
+        <!-- Populated by JS -->
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <span>Viện Khoa học và Công nghệ Hàng không</span>
+      <a href="contact.html">Liên hệ →</a>
+    </footer>
+  </main>
+  <button class="scroll-top" aria-label="Cuộn lên đầu trang">↑</button>
+  <script src="js/main.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const domainLabels = {
+      aviation: "Hàng không",
+      hydro: "Thủy điện",
+      roads: "Đường bộ",
+      buildings: "Đô thị"
+    };
+
+    let allProjects = [];
+    let map;
+    let markers = [];
+
+    async function init() {
+      try {
+        const res = await fetch("data/projects.json");
+        allProjects = await res.json();
+      } catch (e) {
+        allProjects = [];
+      }
+
+      /* Leaflet map */
+      map = L.map("project-map", {
+        scrollWheelZoom: false
+      }).setView([14.0, 108.0], 6);
+
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        maxZoom: 18
+      }).addTo(map);
+
+      renderProjects("all");
+
+      /* Domain filter */
+      document.getElementById("domain-filter").addEventListener("click", (e) => {
+        const btn = e.target.closest(".filter-btn");
+        if (!btn) return;
+        document.querySelectorAll("#domain-filter .filter-btn").forEach((b) => b.classList.remove("is-active"));
+        btn.classList.add("is-active");
+        renderProjects(btn.dataset.domain);
+      });
+    }
+
+    function renderProjects(domain) {
+      const filtered = domain === "all" ? allProjects : allProjects.filter((p) => p.domain === domain);
+
+      /* Timeline */
+      const timeline = document.getElementById("project-timeline");
+      timeline.innerHTML = filtered.map((p) => `
+        <div class="timeline-item" data-domain="${p.domain}">
+          <span class="timeline-label">${p.location} · ${domainLabels[p.domain] || p.domain}</span>
+          <h3>${p.name}</h3>
+          <p>${p.description}</p>
+        </div>
+      `).join("") || '<p style="color: var(--muted);">Không tìm thấy dự án.</p>';
+
+      /* Map markers */
+      markers.forEach((m) => map.removeLayer(m));
+      markers = [];
+      filtered.forEach((p) => {
+        if (p.lat && p.lng) {
+          const marker = L.marker([p.lat, p.lng]).addTo(map)
+            .bindPopup(`<strong>${p.name}</strong><br>${p.location}`);
+          markers.push(marker);
+        }
+      });
+
+      if (markers.length) {
+        const group = L.featureGroup(markers);
+        map.fitBounds(group.getBounds().pad(0.15));
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>

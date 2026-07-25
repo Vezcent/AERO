@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>ASTI | Thống kê khách truy cập</title><link rel="stylesheet" href="/css/global.css"><link rel="stylesheet" href="/css/admin.css"></head>
+<body class="admin-body"><main class="admin-layout"><header class="admin-header"><a class="brand" href="/"><img src="/assets/logo.png" alt="ASTI"><span class="brand__name">ASTI<small>VISITOR ANALYTICS</small></span></a><button id="logout" class="button-link">Đăng xuất →</button></header>
+<p class="eyebrow">Quản trị viên · Dữ liệu làm mới mỗi 30 giây</p><h1>Khách truy cập</h1>
+<section class="metrics"><div class="metric"><span>Tổng lượt truy cập</span><strong id="all-time">—</strong></div><div class="metric"><span>Khách duy nhất</span><strong id="unique-visitors">—</strong></div><div class="metric"><span>Hôm nay</span><strong id="today">—</strong></div><div class="metric"><span>Tháng này</span><strong id="month">—</strong></div></section>
+<section class="admin-grid"><article class="admin-panel"><h2>Trong nước và quốc tế</h2><div class="bar"><span>Việt Nam</span><div class="bar__track"><div id="domestic-bar" class="bar__fill"></div></div><b id="domestic">—</b></div><div class="bar"><span>Quốc tế</span><div class="bar__track"><div id="international-bar" class="bar__fill"></div></div><b id="international">—</b></div><p id="period">Tuần này: — lượt truy cập</p></article>
+<article class="admin-panel"><h2>Quốc gia quốc tế</h2><table><thead><tr><th>Quốc gia</th><th>Lượt truy cập</th></tr></thead><tbody id="countries"><tr><td colspan="2">Đang tải…</td></tr></tbody></table></article></section></main>
+<script>
+const number = (n) => new Intl.NumberFormat("vi-VN").format(n || 0);
+async function load() {
+  const [statsResponse, countryResponse] = await Promise.all([fetch("/api/admin/stats"), fetch("/api/admin/stats/countries")]);
+  if (statsResponse.status === 401) return location.replace("/admin/login.html");
+  const { totals } = await statsResponse.json(); const { countries } = await countryResponse.json();
+  ["allTime","uniqueVisitors","today","month"].forEach((key) => document.querySelector(`#${key.replace(/[A-Z]/g, m => `-${m.toLowerCase()}`)}`).textContent = number(totals[key]));
+  document.querySelector("#domestic").textContent = number(totals.domestic); document.querySelector("#international").textContent = number(totals.international);
+  const max = Math.max(1, totals.domestic + totals.international);
+  document.querySelector("#domestic-bar").style.width = `${totals.domestic / max * 100}%`; document.querySelector("#international-bar").style.width = `${totals.international / max * 100}%`;
+  document.querySelector("#period").textContent = `Tuần này: ${number(totals.week)} lượt truy cập`;
+  document.querySelector("#countries").innerHTML = countries.length ? countries.map(({country, visits}) => `<tr><td>${country}</td><td>${number(visits)}</td></tr>`).join("") : "<tr><td colspan='2'>Chưa có dữ liệu quốc tế.</td></tr>";
+}
+document.querySelector("#logout").addEventListener("click", async () => { await fetch("/api/auth/logout", {method:"POST"}); location.replace("/"); });
+load(); setInterval(load, 30000);
+</script></body></html>

@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>ASTI | Quản trị</title><link rel="stylesheet" href="/css/global.css"><link rel="stylesheet" href="/css/admin.css"></head>
+<body class="admin-body"><main class="login-card"><a class="brand" href="/"><img src="/assets/logo.png" alt="ASTI"><span class="brand__name">ASTI<small>ADMINISTRATION</small></span></a><h1>Đăng nhập</h1><p>Khu vực này chỉ dành cho quản trị viên.</p>
+<form id="login-form"><label>Tên đăng nhập<input name="username" autocomplete="username" required></label><label>Mật khẩu<input type="password" name="password" autocomplete="current-password" required></label><button>Đăng nhập</button><p id="notice" class="notice" role="alert"></p></form></main>
+<script>
+document.querySelector("#login-form").addEventListener("submit", async (event) => {
+  event.preventDefault(); const form = new FormData(event.currentTarget); const notice = document.querySelector("#notice");
+  const response = await fetch("/api/auth/login", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(Object.fromEntries(form)) });
+  if (!response.ok) { notice.textContent = (await response.json()).error || "Không thể đăng nhập."; return; }
+  location.href = "/admin/dashboard.html";
+});
+</script></body></html>
