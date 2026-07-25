@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="vi">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,32 +12,63 @@
   <script defer src="js/page-transitions.js"></script>
   <script defer src="js/i18n.js"></script>
 </head>
+
 <body class="home">
+  <!-- Solar System Main Menu Overlay -->
+  <div id="solar-menu" class="solar-menu">
+    <div class="solar-menu__bottom">
+      <button id="dive-btn" class="dive-button" type="button" aria-label="Khám phá ASTI">
+        <div class="dive-button__content">
+          <span class="dive-button__icon">✦</span>
+          <span class="dive-button__text"></span>
+          <span class="dive-button__sub">DIVE IN</span>
+        </div>
+      </button>
+    </div>
+  </div>
+
   <canvas id="gpu-background" class="gpu-background" aria-hidden="true"></canvas>
-  <div class="ambient ambient--one"></div><div class="ambient ambient--two"></div>
-  <main class="site-shell">
+  <div class="ambient ambient--one"></div>
+  <div class="ambient ambient--two"></div>
+  <main id="site-shell" class="site-shell in-menu">
     <header class="site-header">
-      <a class="brand" href="index.html" aria-label="Trang chủ ASTI"><img src="assets/logo.png" alt="Logo ASTI"><span class="brand__name">VIỆN KHOA HỌC VÀ<br>CÔNG NGHỆ HÀNG KHÔNG<small>AVIATION SCIENCE & TECHNOLOGY INSTITUTE</small></span></a>
+      <a class="brand" href="index.html" aria-label="Trang chủ ASTI"><img src="assets/logo.png" alt="Logo ASTI"><span
+          class="brand__name">VIỆN KHOA HỌC VÀ<br>CÔNG NGHỆ HÀNG KHÔNG<small>AVIATION SCIENCE & TECHNOLOGY
+            INSTITUTE</small></span></a>
       <button class="nav-toggle" type="button" aria-controls="main-nav" aria-expanded="false">MENU</button>
       <nav id="main-nav" class="nav">
-        <a href="research.html">Tin tức & Khám phá</a><a href="services.html">Lĩnh vực</a><a href="services.html">Dịch vụ</a><a href="training.html">Đào tạo</a><a href="about.html">Về chúng tôi</a>
+        <a href="research.html">Tin tức & Khám phá</a><a href="services.html">Lĩnh vực</a><a href="services.html">Dịch
+          vụ</a><a href="training.html">Đào tạo</a><a href="about.html">Về chúng tôi</a>
       </nav>
       <span class="search">Tìm kiếm</span>
+      <button id="orbit-menu-btn" class="orbit-toggle-btn" type="button" aria-label="Mở Menu Hệ Mặt Trời">🪐 Orbit
+        Menu</button>
       <button class="lang-toggle" type="button" aria-label="Switch to English">EN</button>
     </header>
     <section class="hero" aria-label="Giới thiệu ASTI">
-      <aside class="slide-index" aria-label="Mục nổi bật"><span>01</span><span>02</span><span>03</span><span>04</span><span>05</span></aside>
+      <aside class="slide-index" aria-label="Mục nổi bật">
+        <span>01</span><span>02</span><span>03</span><span>04</span><span>05</span></aside>
       <div class="feature">
         <div class="eyebrow">ASTI · Thành phố Hồ Chí Minh</div>
         <h1>Khoa học hàng không kiến tạo những hành trình mới.</h1>
-        <p>Nghiên cứu, chuyển giao công nghệ, thí nghiệm kiểm định và đào tạo chuyên môn cho hạ tầng, giao thông và hàng không Việt Nam.</p>
-        <div class="feature-actions"><a class="button-link" href="about.html">Tìm hiểu về ASTI →</a><a class="button-link" href="projects.html">Khám phá dự án →</a></div>
+        <p>Nghiên cứu, chuyển giao công nghệ, thí nghiệm kiểm định và đào tạo chuyên môn cho hạ tầng, giao thông và hàng
+          không Việt Nam.</p>
+        <div class="feature-actions"><a class="button-link" href="about.html">Tìm hiểu về ASTI →</a><a
+            class="button-link" href="projects.html">Khám phá dự án →</a></div>
       </div>
       <section class="news-stack" aria-label="Tin nổi bật">
-        <a class="story-card story-card--a" href="research.html"><h2>Nghiên cứu vật liệu và công nghệ cho hạ tầng thế hệ mới</h2></a>
-        <a class="story-card story-card--b" href="projects.html"><h2>Kiểm định hạ tầng sân bay: chính xác cho mỗi chuyến bay</h2></a>
-        <a class="story-card story-card--c" href="training.html"><h2>Đào tạo và bồi dưỡng nghiệp vụ chuyên ngành</h2></a>
-        <a class="story-card story-card--d" href="services.html"><h2>LAS-XD 216: năng lực thí nghiệm được chứng nhận</h2></a>
+        <a class="story-card story-card--a" href="research.html">
+          <h2>Nghiên cứu vật liệu và công nghệ cho hạ tầng thế hệ mới</h2>
+        </a>
+        <a class="story-card story-card--b" href="projects.html">
+          <h2>Kiểm định hạ tầng sân bay: chính xác cho mỗi chuyến bay</h2>
+        </a>
+        <a class="story-card story-card--c" href="training.html">
+          <h2>Đào tạo và bồi dưỡng nghiệp vụ chuyên ngành</h2>
+        </a>
+        <a class="story-card story-card--d" href="services.html">
+          <h2>LAS-XD 216: năng lực thí nghiệm được chứng nhận</h2>
+        </a>
       </section>
     </section>
     <section class="home-section home-introduction" aria-labelledby="introduction-title">
@@ -44,59 +76,108 @@
       <div class="introduction-layout">
         <div>
           <h2 id="introduction-title">Kết nối khoa học với hạ tầng và bầu trời Việt Nam.</h2>
-          <p>Viện Khoa học và Công nghệ Hàng không được hình thành từ nền tảng Trung tâm tư vấn khoa học công nghệ công trình hàng không (1996), sau đó được xây dựng lại và đổi tên năm 2007.</p>
+          <p>Viện Khoa học và Công nghệ Hàng không được hình thành từ nền tảng Trung tâm tư vấn khoa học công nghệ công
+            trình hàng không (1996), sau đó được xây dựng lại và đổi tên năm 2007.</p>
           <a class="button-link" href="about.html">Câu chuyện ASTI →</a>
         </div>
         <dl class="fact-list">
-          <div><dt>1996</dt><dd>Nền tảng thành lập của tổ chức</dd></div>
-          <div><dt>LAS-XD 216</dt><dd>Phòng thí nghiệm xây dựng chuyên ngành</dd></div>
-          <div><dt>ISO 9001:2008</dt><dd>Hệ thống quản lý chất lượng được duy trì</dd></div>
+          <div>
+            <dt>1996</dt>
+            <dd>Nền tảng thành lập của tổ chức</dd>
+          </div>
+          <div>
+            <dt>LAS-XD 216</dt>
+            <dd>Phòng thí nghiệm xây dựng chuyên ngành</dd>
+          </div>
+          <div>
+            <dt>ISO 9001:2008</dt>
+            <dd>Hệ thống quản lý chất lượng được duy trì</dd>
+          </div>
         </dl>
       </div>
     </section>
     <section class="home-section home-capabilities" aria-labelledby="capabilities-title">
       <div class="section-heading">
-        <div><div class="section-label">02 · Năng lực</div><h2 id="capabilities-title">Từ nghiên cứu đến triển khai thực tế.</h2></div>
+        <div>
+          <div class="section-label">02 · Năng lực</div>
+          <h2 id="capabilities-title">Từ nghiên cứu đến triển khai thực tế.</h2>
+        </div>
         <p>ASTI cung cấp dịch vụ khoa học công nghệ cho lĩnh vực xây dựng, giao thông và hàng không.</p>
       </div>
       <div class="capability-grid">
-        <a class="capability-card" href="research.html"><span>01</span><h3>Nghiên cứu & chuyển giao</h3><p>Nghiên cứu, sản xuất thử nghiệm và chuyển giao công nghệ.</p></a>
-        <a class="capability-card" href="services.html"><span>02</span><h3>Thí nghiệm & kiểm định</h3><p>Đánh giá vật liệu xây dựng, cấu kiện và công trình.</p></a>
-        <a class="capability-card" href="training.html"><span>03</span><h3>Đào tạo nghiệp vụ</h3><p>Bồi dưỡng nghiệp vụ hàng không và chuyên ngành kỹ thuật.</p></a>
-        <a class="capability-card" href="training.html"><span>04</span><h3>Huấn luyện bay</h3><p>Hoạt động thuộc Trung tâm huấn luyện bay của Viện.</p></a>
-        <a class="capability-card" href="services.html"><span>05</span><h3>Tư vấn xây dựng</h3><p>Giám sát, khảo sát và thiết kế theo công nghệ mới.</p></a>
+        <a class="capability-card" href="research.html"><span>01</span>
+          <h3>Nghiên cứu & chuyển giao</h3>
+          <p>Nghiên cứu, sản xuất thử nghiệm và chuyển giao công nghệ.</p>
+        </a>
+        <a class="capability-card" href="services.html"><span>02</span>
+          <h3>Thí nghiệm & kiểm định</h3>
+          <p>Đánh giá vật liệu xây dựng, cấu kiện và công trình.</p>
+        </a>
+        <a class="capability-card" href="training.html"><span>03</span>
+          <h3>Đào tạo nghiệp vụ</h3>
+          <p>Bồi dưỡng nghiệp vụ hàng không và chuyên ngành kỹ thuật.</p>
+        </a>
+        <a class="capability-card" href="training.html"><span>04</span>
+          <h3>Huấn luyện bay</h3>
+          <p>Hoạt động thuộc Trung tâm huấn luyện bay của Viện.</p>
+        </a>
+        <a class="capability-card" href="services.html"><span>05</span>
+          <h3>Tư vấn xây dựng</h3>
+          <p>Giám sát, khảo sát và thiết kế theo công nghệ mới.</p>
+        </a>
       </div>
     </section>
     <section class="home-section quality-panel" aria-labelledby="quality-title">
       <div class="quality-content">
         <div class="section-label">03 · Chất lượng</div>
         <h2 id="quality-title">Chất lượng – Hiệu quả – Sáng tạo.</h2>
-        <p>Phòng thí nghiệm LAS-XD 216 được công nhận năng lực hoạt động; hệ thống quản lý chất lượng cho thí nghiệm vật liệu xây dựng và cơ lý đất được duy trì theo ISO 9001:2008.</p>
+        <p>Phòng thí nghiệm LAS-XD 216 được công nhận năng lực hoạt động; hệ thống quản lý chất lượng cho thí nghiệm vật
+          liệu xây dựng và cơ lý đất được duy trì theo ISO 9001:2008.</p>
       </div>
-      <a class="quality-link" href="certifications.html"><span>Hồ sơ pháp lý</span><strong>LAS-XD 216<br>ISO 9001:2008</strong><span aria-hidden="true">→</span></a>
+      <a class="quality-link" href="certifications.html"><span>Hồ sơ pháp lý</span><strong>LAS-XD 216<br>ISO
+          9001:2008</strong><span aria-hidden="true">→</span></a>
     </section>
     <section class="home-section project-section" aria-labelledby="projects-title">
       <div class="section-heading">
-        <div><div class="section-label">04 · Dự án tiêu biểu</div><h2 id="projects-title">Năng lực được chứng minh qua công trình.</h2></div>
+        <div>
+          <div class="section-label">04 · Dự án tiêu biểu</div>
+          <h2 id="projects-title">Năng lực được chứng minh qua công trình.</h2>
+        </div>
         <a class="button-link" href="projects.html">Xem tất cả dự án →</a>
       </div>
       <div class="project-grid">
-        <article><span>Lâm Đồng</span><h3>Thủy điện Đồng Nai 4</h3><p>Thí nghiệm kiểm tra chất lượng công trình thủy điện quy mô lớn.</p></article>
-        <article><span>Đà Nẵng</span><h3>Sân đỗ máy bay A321</h3><p>Đánh giá sức chịu tải cho khai thác máy bay A321 tại A41 và 917.</p></article>
-        <article><span>Phía Nam</span><h3>Đường tuần tra biên giới</h3><p>Thí nghiệm đường bê tông xi măng tại Gia Lai, Đồng Tháp và Long An.</p></article>
+        <article><span>Lâm Đồng</span>
+          <h3>Thủy điện Đồng Nai 4</h3>
+          <p>Thí nghiệm kiểm tra chất lượng công trình thủy điện quy mô lớn.</p>
+        </article>
+        <article><span>Đà Nẵng</span>
+          <h3>Sân đỗ máy bay A321</h3>
+          <p>Đánh giá sức chịu tải cho khai thác máy bay A321 tại A41 và 917.</p>
+        </article>
+        <article><span>Phía Nam</span>
+          <h3>Đường tuần tra biên giới</h3>
+          <p>Thí nghiệm đường bê tông xi măng tại Gia Lai, Đồng Tháp và Long An.</p>
+        </article>
       </div>
     </section>
     <section class="home-contact" aria-label="Liên hệ ASTI">
-      <div><div class="section-label">Kết nối cùng ASTI</div><h2>Khởi động dự án tiếp theo của bạn.</h2></div>
+      <div>
+        <div class="section-label">Kết nối cùng ASTI</div>
+        <h2>Khởi động dự án tiếp theo của bạn.</h2>
+      </div>
       <a class="button-link" href="contact.html">Liên hệ với chúng tôi →</a>
     </section>
     <footer class="home-footer">
       <span>Viện Khoa học và Công nghệ Hàng không · 156/12 Cộng Hòa, TP. Hồ Chí Minh</span>
       <span>028.38426046 · vienhangkhong2008@gmail.com</span>
     </footer>
-    <div class="socials" aria-label="Mạng xã hội"><a href="#" aria-label="Facebook">f</a><a href="#" aria-label="LinkedIn">in</a></div>
+    <div class="socials" aria-label="Mạng xã hội"><a href="#" aria-label="Facebook">f</a><a href="#"
+        aria-label="LinkedIn">in</a></div>
   </main>
   <button class="scroll-top" aria-label="Cuộn lên đầu trang">↑</button>
-  <script src="js/main.js"></script><script type="module" src="js/webgpu-particles.js"></script><script src="js/webgl-fallback.js"></script>
+  <script src="js/main.js"></script>
+  <script type="module" src="js/webgpu-particles.js"></script>
+  <script src="js/webgl-fallback.js"></script>
 </body>
+
 </html>

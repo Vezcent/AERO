@@ -1,8 +1,8 @@
 .home { min-height: 100vh; overflow-x: hidden; overflow-y: auto; }
-.gpu-background { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -3; background: radial-gradient(ellipse at 18% 78%, #07182d 0%, #050b14 42%, #03060c 100%); }
-.ambient { position: fixed; z-index: -2; border-radius: 50%; filter: blur(72px); opacity: .18; pointer-events: none; }
-.ambient--one { width: 42vw; height: 28vw; left: -18vw; bottom: -16vw; background: #0a5d9c; }
-.ambient--two { width: 30vw; height: 24vw; right: -12vw; top: -9vw; background: #62225e; }
+.gpu-background { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -3; background: radial-gradient(ellipse at 50% 90%, #0d2c4c 0%, #061221 48%, #03070d 100%); }
+.ambient { position: fixed; z-index: -2; border-radius: 50%; pointer-events: none; }
+.ambient--one { width: 75vw; height: 50vw; left: 12.5vw; bottom: -22vw; background: radial-gradient(ellipse at center, rgba(14, 93, 156, 0.42), rgba(6, 26, 48, 0)); filter: blur(90px); opacity: .85; }
+.ambient--two { width: 45vw; height: 35vw; right: -10vw; top: -10vw; background: radial-gradient(ellipse at center, rgba(82, 34, 94, 0.25), rgba(12, 18, 30, 0)); filter: blur(100px); opacity: .6; }
 .hero { min-height: calc(100vh - 110px); display: grid; grid-template-columns: 9rem minmax(300px, 1.15fr) minmax(300px, 1fr); gap: 2rem; align-items: center; padding: 3rem 0 5rem; }
 .slide-index { align-self: stretch; display: flex; flex-direction: column; justify-content: center; gap: .55rem; color: var(--muted); font-size: .82rem; }
 .slide-index span { display: block; width: 44px; padding: .22rem 0; }
@@ -89,3 +89,198 @@
   .quality-link { min-height: 210px; }
   .home-footer { flex-direction: column; padding-bottom: 2rem; }
 }
+
+/* ── Solar System Main Menu Overlay ── */
+.solar-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding: clamp(2rem, 4vw, 3.5rem) 2rem;
+  background: transparent;
+  pointer-events: none;
+  transition: opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1), transform 1.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 1.8s;
+}
+.solar-menu.is-dived {
+  opacity: 0;
+  transform: scale(1.25);
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.solar-menu.is-dived .dive-button {
+  transform: scale(0.05) rotate(240deg);
+  opacity: 0;
+  filter: blur(12px);
+  box-shadow: 0 0 0 rgba(0, 212, 255, 0);
+  transition: transform 0.8s cubic-bezier(0.7, 0, 0.84, 0), opacity 0.8s, filter 0.8s, box-shadow 0.8s;
+}
+
+.solar-menu__bottom {
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+/* ── Glowing Circle Button ("Dive In") ── */
+.dive-button {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, rgba(21, 101, 192, 0.75), rgba(6, 12, 23, 0.92));
+  border: 1.5px solid rgba(0, 212, 255, 0.55);
+  color: var(--text);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  outline: none;
+  box-shadow: 0 0 35px rgba(0, 212, 255, 0.35), inset 0 0 22px rgba(0, 212, 255, 0.25);
+  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s, box-shadow 0.4s, filter 0.6s, opacity 0.6s;
+}
+.dive-button::before {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 1px dashed rgba(0, 212, 255, 0.45);
+  animation: spin-orbit 16s linear infinite;
+  pointer-events: none;
+}
+.dive-button::after {
+  content: "";
+  position: absolute;
+  inset: -16px;
+  border-radius: 50%;
+  border: 1px solid rgba(213, 231, 246, 0.2);
+  animation: spin-orbit 26s linear infinite reverse;
+  pointer-events: none;
+}
+.dive-button:hover {
+  transform: scale(1.14);
+  border-color: var(--cyan);
+  box-shadow: 0 0 65px rgba(0, 212, 255, 0.7), inset 0 0 35px rgba(0, 212, 255, 0.45);
+}
+.dive-button:hover::before {
+  border-color: rgba(0, 212, 255, 0.8);
+  animation-duration: 8s;
+}
+
+.dive-button__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.15rem;
+  z-index: 2;
+}
+.dive-button__icon {
+  font-size: 1.3rem;
+  color: var(--cyan);
+  line-height: 1;
+  transition: transform 0.3s;
+}
+.dive-button:hover .dive-button__icon {
+  transform: translateY(3px) scale(1.25);
+}
+.dive-button__text {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: #ffffff;
+}
+.dive-button__sub {
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  color: var(--cyan);
+  text-transform: uppercase;
+}
+
+.solar-menu__footer {
+  color: var(--muted);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin-orbit {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Header Orbit Toggle Button (to return to Solar Menu) */
+.orbit-toggle-btn {
+  margin-left: 0.5rem;
+  padding: 0.38rem 0.8rem;
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  background: rgba(13, 26, 46, 0.6);
+  color: var(--cyan);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 4px;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.orbit-toggle-btn:hover {
+  background: rgba(0, 212, 255, 0.15);
+  border-color: var(--cyan);
+  color: #ffffff;
+}
+
+/* Site shell menu state — Long Curved Dive Entry */
+.site-shell.in-menu {
+  opacity: 0 !important;
+  visibility: hidden;
+  pointer-events: none !important;
+  transform: scale(0.92) translateY(60px);
+  filter: blur(14px);
+  transition: opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1), transform 1.8s cubic-bezier(0.16, 1, 0.3, 1), filter 1.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 1.8s;
+}
+.site-shell.is-active {
+  opacity: 1 !important;
+  visibility: visible;
+  pointer-events: auto !important;
+  transform: scale(1) translateY(0);
+  filter: blur(0px);
+  transition: opacity 2.2s cubic-bezier(0.16, 1, 0.3, 1), transform 2.2s cubic-bezier(0.16, 1, 0.3, 1), filter 2.2s cubic-bezier(0.16, 1, 0.3, 1), visibility 2.2s;
+}
+
+/* Staggered Curved Child Entry */
+.site-shell.in-menu .site-header,
+.site-shell.in-menu .feature,
+.site-shell.in-menu .news-stack,
+.site-shell.in-menu .home-section {
+  opacity: 0;
+  transform: translateY(35px) scale(0.97);
+  filter: blur(6px);
+}
+
+.site-shell.is-active .site-header {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0px);
+  transition: opacity 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s, transform 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s, filter 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+}
+
+.site-shell.is-active .feature {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0px);
+  transition: opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s, transform 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s, filter 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s;
+}
+
+.site-shell.is-active .story-card {
+  transition: transform 0.5s, border-color 0.25s, box-shadow 0.25s, opacity 1.6s cubic-bezier(0.16, 1, 0.3, 1), filter 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.site-shell.is-active .story-card--a { transition-delay: 0.7s; }
+.site-shell.is-active .story-card--b { transition-delay: 0.85s; }
+.site-shell.is-active .story-card--c { transition-delay: 1.0s; }
+.site-shell.is-active .story-card--d { transition-delay: 1.15s; }

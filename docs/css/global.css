@@ -46,6 +46,7 @@ html.is-page-leaving .site-shell { animation: content-disappear .3s ease-in both
   min-height: 100vh;
   margin: 0 auto;
   position: relative;
+  transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1), transform 1.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 1.4s;
 }
 .site-header {
   min-height: 110px;

@@ -1,3 +1,58 @@
+/* ── Solar System Main Menu & Dive In Controller ── */
+window.astiDiveState = window.astiDiveState || { progress: 0, target: 0, mouseX: 0, mouseY: 0 };
+
+const solarMenu = document.querySelector("#solar-menu");
+const siteShell = document.querySelector("#site-shell");
+const diveBtn = document.querySelector("#dive-btn");
+const orbitMenuBtn = document.querySelector("#orbit-menu-btn");
+
+function setDivedState(isDived) {
+  if (isDived) {
+    if (solarMenu) solarMenu.classList.add("is-dived");
+    if (siteShell) {
+      siteShell.classList.remove("in-menu");
+      requestAnimationFrame(() => {
+        siteShell.classList.add("is-active");
+        // Trigger reveal animations inside site shell
+        document.querySelectorAll("#site-shell .reveal").forEach((el) => el.classList.add("is-visible"));
+      });
+    }
+    window.astiDiveState.target = 1.0;
+  } else {
+    if (solarMenu) solarMenu.classList.remove("is-dived");
+    if (siteShell) {
+      siteShell.classList.remove("is-active");
+      siteShell.classList.add("in-menu");
+    }
+    window.astiDiveState.target = 0.0;
+  }
+}
+
+if (solarMenu && diveBtn) {
+  const alreadyDived = sessionStorage.getItem("asti_dived") === "true";
+  if (alreadyDived) {
+    setDivedState(true);
+  } else {
+    setDivedState(false);
+  }
+
+  diveBtn.addEventListener("click", () => {
+    sessionStorage.setItem("asti_dived", "true");
+    setDivedState(true);
+  });
+} else if (siteShell) {
+  siteShell.classList.remove("in-menu");
+  siteShell.classList.add("is-active");
+  window.astiDiveState.target = 1.0;
+}
+
+if (orbitMenuBtn) {
+  orbitMenuBtn.addEventListener("click", () => {
+    sessionStorage.removeItem("asti_dived");
+    setDivedState(false);
+  });
+}
+
 /* ── Nav toggle ── */
 const toggle = document.querySelector(".nav-toggle");
 const nav = document.querySelector(".nav");
@@ -51,7 +106,6 @@ if (revealElements.length && !prefersReducedMotion.matches) {
   );
   revealElements.forEach((el) => revealObserver.observe(el));
 } else {
-  /* Reduced-motion: show everything immediately */
   revealElements.forEach((el) => el.classList.add("is-visible"));
 }
 

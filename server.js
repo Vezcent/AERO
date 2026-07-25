@@ -141,8 +141,9 @@ app.get("/api/admin/stats/countries", requireAdmin, (_request, response) => {
   response.json({ countries });
 });
 
-app.use(express.static(path.join(root, "public"), { extensions: ["html"] }));
-app.use((_request, response) => response.sendFile(path.join(root, "public", "index.html")));
+const staticDir = fs.existsSync(path.join(root, "docs")) ? path.join(root, "docs") : path.join(root, "public");
+app.use(express.static(staticDir, { extensions: ["html"] }));
+app.use((_request, response) => response.sendFile(path.join(staticDir, "index.html")));
 
 app.listen(port, () => {
   console.log(`ASTI local site is running at http://localhost:${port}`);
